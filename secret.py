@@ -1,0 +1,5 @@
+personal_use_script = 'ggZ0SxgM-Mep6g'
+secret = 'LC5I7lgOPWRm7U9NMCSo1C2WxQ0'
+name = 'nba_project'
+user = 'PrprpR-7'
+pwd = 'L35614726'

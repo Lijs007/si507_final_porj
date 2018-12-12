@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name = 'viewport' content='width=device-width, initial-scale=1'>
+    <title>NBA Data</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+ 
+
+    
+  </head>
+  <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <header>
+        <nav class = "navtop">
+            <ul>
+                    <li><i class="fas fa-align-left" data-toggle="dropdown"></i></li>
+                    <li><a href = "..">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <h1>Dive into the Data of NBA!</h1>
+
+
+<!--         <div id="enter">
+          <label>
+            Enter a player or a Team's Name:
+            <input type="text" name="name" id="name">
+
+          </label>
+        </div>
+		
+
+      <div class="para">
+      <a href = "" id = "searchPlayer">Search Player!</a> <a href = "" id = "searchTeam">Search Team!</a>
+      </div> -->
+		
+		<div class="dropdown para">
+		  <h2>Enter a Name of a Player or a Team: </h2>
+		  <button onclick="myFunction()" class="dropbtn">Search</button>
+		  <div id="myDropdown" class="dropdown-content">
+		    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+		    {% for item in total_list %}
+		    <a href="../{{item[1]}}/{{item[0]}}">{{item[0]}}</a>
+		    {% endfor %}
+		  </div>
+		</div>
+
+		<h2 style="color: red;">{{name}}</h2>
+
+		<h2>Radar Chart</h2>
+		<p style="text-align: center">Each Data is Normalized to the Maximum of the Whole League.</p>
+		<div id="chart" class="chart center" style="width: 30%;">
+    </div>
+      
+    
+    <h2>Wordcloud</h2>
+
+		<img src = "../static/img/wordcloud/{{name}}.png" alt = "Wordcloud" class="center"/>
+
+
+
+
+<!--         <img src = "" alt = "Wordcloud" id = "Wordcloud"> -->
+  	<script>
+  		$("#name").on("change", function() {
+  			var name = $("#name").val();
+  			$("#searchPlayer").attr("href", "http://127.0.0.1:5000/player/" + name)
+  			$("#searchTeam").attr("href", "http://127.0.0.1:5000/team/" + name)
+  		})
+    	/*function search(){
+    		var name = $("#name").val();
+    		window.location.replace("http://127.0.0.1:5000/player/" + name);
+    		$("#Wordcloud").attr("src", "./static/img/" + name + ".png");
+    	}*/
+    </script>
+    <script type="text/javascript">
+        
+        var graphs = {{graphJSON | safe}};
+        
+        Plotly.plot('chart',graphs,{});        
+ 
+    </script>
+    <script>
+        /* When the user clicks on the button,
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+          document.getElementById("myDropdown").classList.toggle("show");
+        }
+        
+        function filterFunction() {
+          var input, filter, ul, li, a, i;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          div = document.getElementById("myDropdown");
+          a = div.getElementsByTagName("a");
+          for (i = 0; i < a.length; i++) {
+            if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+              a[i].style.display = "";
+            } else {
+              a[i].style.display = "none";
+            }
+          }
+        }
+        </script>
+  </body>
+ 
+
+</html>
+

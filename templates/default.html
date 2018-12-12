@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+			<meta charset="UTF-8">
+			<meta name = 'viewport' content='width=device-width, initial-scale=1'>
+    <title>NBA Data</title>
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+	 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    
+  </head>
+  <body>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		
+		<header>
+        <nav class = "navtop">
+            <ul>
+                    <li><i class="fas fa-align-left" data-toggle="dropdown"></i></li>
+                    <li><a href = "..">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+		<h1>Dive into the Data of NBA!</h1>
+
+		<div class="dropdown para">
+		<h2>Enter a Name of a Player or a Team: </h2>
+		<button onclick="myFunctionSearch()" class="dropbtn">Search</button>
+		<div id="myDropdownSearch" class="dropdown-content">
+			<input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+			{% for item in total_list %}
+			<a href="/{{item[1]}}/{{item[0]}}">{{item[0]}}</a>
+			{% endfor %}
+		</div>
+		</div>
+		
+		<h2>Current Data Per Game Leaders</h2>
+		<div class = "tbcontainer" style="width: 80%;">
+		<div>
+		<h3>Current Point Leaders</h3>
+		<table>
+			<tbody>
+		{% for item in data[0] %}
+
+		<tr>
+				<td><a href="/player/{{item[0]}}">{{item[0]}}</a></td>
+				<td>{{item[1]}}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+		</table>
+		</div>
+
+		<div>
+		<h3>Current Rebound Leaders</h3>
+		<table>
+			<tbody>
+		{% for item in data[1] %}
+
+		<tr>
+				<td><a href="/player/{{item[0]}}">{{item[0]}}</a></td>
+				<td>{{item[1]}}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+		</table>
+		</div>
+
+		<div>
+		<h3>Current Assist Leaders</h3>
+		<table>
+			<tbody>
+		{% for item in data[2] %}
+
+		<tr>
+				<td><a href="/player/{{item[0]}}">{{item[0]}}</a></td>
+				<td>{{item[1]}}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+		</table>
+		</div>
+
+		<div>
+		<h3>Current Block Leaders</h3>
+		<table>
+			<tbody>
+		{% for item in data[3] %}
+
+		<tr>
+				<td><a href="/player/{{item[0]}}">{{item[0]}}</a></td>
+				<td>{{item[1]}}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+		</table>
+		</div>
+
+		<div>
+		<h3>Current Steal Leaders</h3>
+		<table>
+			<tbody>
+		{% for item in data[4] %}
+
+		<tr>
+				<td><a href="/player/{{item[0]}}">{{item[0]}}</a></td>
+				<td>{{item[1]}}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+		</table>
+		</div>
+
+		<div>
+		<h3>Current Turnover Leaders</h3>
+		<table>
+			<tbody>
+		{% for item in data[5] %}
+
+		<tr>
+				<td><a href="/player/{{item[0]}}">{{item[0]}}</a></td>
+				<td>{{item[1]}}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+		</table>
+		</div>
+	</div>
+
+
+
+	<h2>Agg Data of All Time Leaders</h2>
+	<div class = "tbcontainer" style="width: 80%;">
+		<div>
+		<h3>All Time Point Leaders</h3>
+		<table>
+			<tbody>
+		{% for item in data_all[0] %}
+
+		<tr>
+				<td><a href="/player/{{item[0]}}">{{item[0]}}</a></td>
+				<td>{{item[1]}}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+		</table>
+		</div>
+
+		<div>
+		<h3>All Time Rebound Leaders</h3>
+		<table>
+			<tbody>
+		{% for item in data_all[1] %}
+
+		<tr>
+				<td><a href="/player/{{item[0]}}">{{item[0]}}</a></td>
+				<td>{{item[1]}}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+		</table>
+		</div>
+
+		<div>
+		<h3>All Time Assist Leaders</h3>
+		<table>
+			<tbody>
+		{% for item in data_all[2] %}
+
+		<tr>
+				<td><a href="/player/{{item[0]}}">{{item[0]}}</a></td>
+				<td>{{item[1]}}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+		</table>
+		</div>
+
+		<div>
+		<h3>All Time Block Leaders</h3>
+		<table>
+			<tbody>
+		{% for item in data_all[3] %}
+
+		<tr>
+				<td><a href="/player/{{item[0]}}">{{item[0]}}</a></td>
+				<td>{{item[1]}}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+		</table>
+		</div>
+
+		<div>
+		<h3>All Time Steal Leaders</h3>
+		<table>
+			<tbody>
+		{% for item in data_all[4] %}
+
+		<tr>
+				<td><a href="/player/{{item[0]}}">{{item[0]}}</a></td>
+				<td>{{item[1]}}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+		</table>
+		</div>
+
+		<div>
+		<h3>All Time Turnover Leaders</h3>
+		<table>
+			<tbody>
+		{% for item in data_all[5] %}
+
+		<tr>
+				<td><a href="/player/{{item[0]}}">{{item[0]}}</a></td>
+				<td>{{item[1]}}</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+		</table>
+		</div>
+	</div>
+
+			<div class="para">
+    	<h2>Select Two Vars for Scatter Plot:</h2>
+    	<div class="dropdown">
+		<button onclick="myFunction()" class="dropbtn">Var1 vs Var2</button>
+		  <div id="myDropdown" class="dropdown-content second">
+		  <a href="/3PA&3P%">3PA vs 3P%</a>
+		  <a href="/PTS&FG%">PTS vs FG%</a>
+		  <a href="/AST&TOV">AST vs TOV</a>
+		  <a href="/OREB&DREB">OREB vs DREB</a>
+		  </div>
+		</div>
+		</div>
+
+			<div id = "chart" class="chart center" style="width: 80%;">    		
+    	</div>
+<!-- 		<div class="para">
+        <div id="enter">
+          <label>
+						<h2>More Info About Players or Teams:</h2>
+            Enter a player or a Team's Name: 
+            <input type="text" name="name" id="name">
+
+          </label>
+        </div>
+
+
+    	<a href = "" id = "searchPlayer">Search Player!</a> <a href = "" id = "searchTeam">Search Team!</a>
+			</div> -->
+
+<!--         <img src = "" alt = "Wordcloud" id = "Wordcloud"> -->
+
+  	<script>
+  		$("#name").on("change", function() {
+  			var name = $("#name").val();
+  			$("#searchPlayer").attr("href", "http://127.0.0.1:5000/player/" + name)
+  			$("#searchTeam").attr("href", "http://127.0.0.1:5000/team/" + name)
+  		})
+		function myFunction() {
+		    document.getElementById("myDropdown").classList.toggle("show");
+		}
+
+		// Close the dropdown if the user clicks outside of it
+		window.onclick = function(event) {
+		  if (!event.target.matches('.dropbtn')) {
+
+		    var dropdowns = document.getElementsByClassName("second");
+		    var i;
+		    for (i = 0; i < dropdowns.length; i++) {
+		      var openDropdown = dropdowns[i];
+		      if (openDropdown.classList.contains('show')) {
+		        openDropdown.classList.remove('show');
+		      }
+		    }
+		  }
+		}
+    	/*function search(){
+    		var name = $("#name").val();
+    		window.location.replace("http://127.0.0.1:5000/player/" + name);
+    		$("#Wordcloud").attr("src", "./static/img/" + name + ".png");
+    	}*/
+    </script>
+
+    <script type="text/javascript">
+         
+        var graphs = {{graphJSON | safe}};
+        
+        Plotly.plot('chart',graphs,{});        
+ 
+		</script>
+		    <script>
+						/* When the user clicks on the button,
+						toggle between hiding and showing the dropdown content */
+						function myFunctionSearch() {
+							document.getElementById("myDropdownSearch").classList.toggle("show");
+						}
+						
+						function filterFunction() {
+							var input, filter, ul, li, a, i;
+							input = document.getElementById("myInput");
+							filter = input.value.toUpperCase();
+							div = document.getElementById("myDropdownSearch");
+							a = div.getElementsByTagName("a");
+							for (i = 0; i < a.length; i++) {
+								if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+									a[i].style.display = "";
+								} else {
+									a[i].style.display = "none";
+								}
+							}
+						}
+						</script>
+  </body>
+</html>
